@@ -45,5 +45,40 @@ public class Book {
             inverseJoinColumns = {@JoinColumn(name="publisher_id")})
     private Set<Publisher> publishers = new HashSet<Publisher>();
 
+    public void removePublisher(Publisher publisher){
+        this.publishers.remove(publisher);      // remove all the publisher from the hash set
+        publisher.getBooks().remove(publisher); // get all the books and remove from there
+    }
+
+    public void addPublisher(Publisher publisher){
+        this.publishers.add(publisher);
+        publisher.getBooks().add(this);
+    }
+
+    public void removeAuthor(Author author){
+        this.authors.remove(author);      // remove all the author from the hash set
+        author.getBooks().remove(author); // get all the books and remove from there
+    }
+
+    public void addAuthor(Author author){
+        this.authors.add(author);
+        author.getBooks().add(this);
+    }
+
+    public void removeCategory(Category category){
+        this.categories.remove(category);      // remove all the category from the hash set
+        category.getBooks().remove(category); // get all the books and remove from there
+    }
+
+    public void addCategory(Category category){
+        this.categories.add(category);
+        category.getBooks().add(this);
+    }
+
+
+
+
+
+
 
 }
