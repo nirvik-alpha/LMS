@@ -45,35 +45,49 @@ public class Book {
             inverseJoinColumns = {@JoinColumn(name="publisher_id")})
     private Set<Publisher> publishers = new HashSet<Publisher>();
 
-    public void removePublisher(Publisher publisher){
-        this.publishers.remove(publisher);      // remove all the publisher from the hash set
-        publisher.getBooks().remove(publisher); // get all the books and remove from there
+
+    // Constructor to initialize a new book with basic details
+    public Book(String isbn, String name, String description) {
+        this.isbn = isbn;
+        this.name = name;
+        this.description = description;
     }
 
+    // Methods to manage the bidirectional relationship
+
     public void addPublisher(Publisher publisher){
-        this.publishers.add(publisher);
-        publisher.getBooks().add(this);
+        this.publishers.add(publisher);                               // Add publisher to this book
+        publisher.getBooks().add(this);                              // Add this book to the publisher
+    }
+
+    public void removePublisher(Publisher publisher){
+        this.publishers.remove(publisher);                          // Remove author from this book
+        publisher.getBooks().remove(publisher);                    // Remove author from this book
+    }
+
+
+
+    public void addAuthor(Author author){
+        this.authors.add(author);                                 // Add author to this book
+        author.getBooks().add(this);                             // Add this book to the author
     }
 
     public void removeAuthor(Author author){
-        this.authors.remove(author);      // remove all the author from the hash set
-        author.getBooks().remove(author); // get all the books and remove from there
+        this.authors.remove(author);                              // Remove author from this book
+        author.getBooks().remove(author);                        // Remove this book from the author
     }
 
-    public void addAuthor(Author author){
-        this.authors.add(author);
-        author.getBooks().add(this);
+
+    public void addCategory(Category category){
+        this.categories.add(category);                        // Add category to this book
+        category.getBooks().add(this);                       // Add this book to the category
     }
 
     public void removeCategory(Category category){
-        this.categories.remove(category);      // remove all the category from the hash set
-        category.getBooks().remove(category); // get all the books and remove from there
+        this.categories.remove(category);                    // Remove category from this book
+        category.getBooks().remove(category);               // Remove this book from the category
     }
 
-    public void addCategory(Category category){
-        this.categories.add(category);
-        category.getBooks().add(this);
-    }
 
 
 

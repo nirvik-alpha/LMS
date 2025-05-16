@@ -18,7 +18,7 @@ public class PublisherService {
     }
 
     public Publisher findPublisherById(Long id){
-        Publisher publisher = publisherRepository.findById(id).orElseThrow(()->new RuntimeException("Publihser not found"));
+        Publisher publisher = publisherRepository.findById(id).orElseThrow(()->new RuntimeException("Publisher not found"));
         return publisher;
     }
 

@@ -33,7 +33,7 @@ public class CategoryService {
     }
 
     public void deleteCategory(Long id){
-        Category category = categoryRepository.findById(id).orElseThrow(()->new RuntimeException("Author not found"));
+        Category category = categoryRepository.findById(id).orElseThrow(()->new RuntimeException("Category not found"));
         categoryRepository.deleteById(category.getId());
     }
 
